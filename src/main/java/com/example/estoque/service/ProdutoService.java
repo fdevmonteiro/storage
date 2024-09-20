@@ -6,15 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProdutoService {
 
+
     private final ProdutoRepository produtoRepository;
+
+
+
 
     @Autowired
     public ProdutoService(ProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
+
     }
 
     public List<Produto> listarTodos() {
@@ -22,7 +28,11 @@ public class ProdutoService {
     }
 
     public Produto salvar(Produto produto) {
-        return produtoRepository.save(produto);
+        Produto salvo = produtoRepository.save(produto);
+
+        // Criar um registro de movimentação para o produto salvo
+
+        return salvo;
     }
 
     public Produto buscarPorId(Long id) {
@@ -32,4 +42,12 @@ public class ProdutoService {
     public void deletarPorId(Long id) {
         produtoRepository.deleteById(id);
     }
+
+
+
+    public void salvarProduto(Produto produto) {
+        produtoRepository.save(produto);
+    }
 }
+
+

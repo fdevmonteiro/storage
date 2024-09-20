@@ -5,7 +5,7 @@
     <title>Adicionar Produto</title>
     <link rel="stylesheet" type="text/css" href="/css/addproduto.css">
         <link rel="stylesheet" type="text/css" href="/css/lista.css">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-EXyFBO1PSG6pHnN5+ek7EAci+yH5Fd1qO9bK6z4WqlfW5ihhU07cF7r7bSAymNbn7YrGk8w5ogONcU6VRNWhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
 </head>
 <body>
 
@@ -15,26 +15,30 @@
 </nav>
 
     <h1>Adicionar Novo Produto</h1>
-    <form th:action="@{/produtos}" th:object="${produto}" method="post">
+
+          <div id="cadastroxml">
+          <h4 >Cadastre Produtos utilizando um Arquivo .xml </h4>
+          <a  th:href="upload">Aqui</a>
+          </div>
+
+    <form id="formaddprod" th:action="@{/produtos}" th:object="${produto}" method="post">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" th:field="*{nome}" /><br />
 
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" th:field="*{descricao}" /><br />
+
 
         <label for="preco">Preço:</label>
         <input type="text" id="preco" th:field="*{preco}" /><br />
 
 
-        
-        <label for="categoria">Categoria:</label>
-        <input type="text" id="categoria" th:field="*{categoria}" /><br />
-       
+
+
+
        <label for="categoria">Quantidade:</label>
         <input type="text" id="quantidade" th:field="*{quantidade}" /><br />
 
 
-        
+
 
         <button type="submit">Adicionar</button>
     </form>

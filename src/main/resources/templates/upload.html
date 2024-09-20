@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Upload de Arquivo XML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #uploadForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #responseMessage {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+        nav{
+
+            margin-top: 5px;
+
+
+        }
+    </style>
+
+    <nav>
+        <a href="/" class="home-link"><i class="fas fa-home"></i> Home</a>
+    </nav>
+
+</head>
+<body>
+<h1>Upload de Arquivo XML</h1>
+<form id="uploadForm" action="upload" method="post" enctype="multipart/form-data">
+    <label for="xmlFile">Escolha um arquivo XML:</label>
+    <input type="file" id="xmlFile" name="xmlFile" accept=".xml">
+    <button type="submit">Enviar</button>
+</form>
+
+<div id="responseMessage"></div>
+
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData();
+        const fileInput = document.getElementById('xmlFile');
+        formData.append('xmlFile', fileInput.files[0]);
+
+        fetch('/upload', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('responseMessage').innerText = data;
+            })
+            .catch(error => {
+                document.getElementById('responseMessage').textContent = 'Erro ao enviar o arquivo.';
+                console.error('Erro:', error);
+            });
+    });
+</script>
+</body>
+</html>

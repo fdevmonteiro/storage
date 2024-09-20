@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar saida</title>
+    <link rel="stylesheet" type="text/css" href="/css/lista.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-EXyFBO1PSG6pHnN5+ek7EAci+yH5Fd1qO9bK6z4WqlfW5ihhU07cF7r7bSAymNbn7YrGk8w5ogONcU6VRNWhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nome</th>
+
+        <th>Quantidade</th>
+
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="produto : ${produtos}">
+        <td th:text="${produto.nome}"></td>
+
+        <td th:text="${produto.quantidade}"></td>
+
+        <td>
+
+
+        </td>
+
+
+    </tr>
+    <a id="linkadd" href="/adicionar" class="menu-item">Adicionar Produto</a>
+    </tbody>
+</table>
+</body>

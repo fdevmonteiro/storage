@@ -1,32 +1,39 @@
 package com.example.estoque.model;
 
-import java.time.LocalDate;
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 @Entity
 public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
+    public String nome;
+    public String quantidade;
+    public BigDecimal preco;
+     @CreationTimestamp
+    public LocalDateTime dataCadastro;
 
-    private String nome;
-    private String descricao;
-    private Double preco;
-    private Integer quantidade;
-    private LocalDate dataValidade;
-    private String categoria;
-    private Integer limite;
+    // Construtor padrão
+    public Produto() {
+    }
 
-    // Getters e Setters
+    // Construtor com parâmetros
+    public Produto(String nome, String quantidade, BigDecimal preco) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.preco = preco;
 
-    public Long getId() {
-        return id;
     }
 
 
@@ -38,51 +45,23 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public Integer getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Integer quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
-    
-    public LocalDate getDataValidade() {
-        return dataValidade;
+
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setDataValidade(LocalDate dataValidade) {
-        this.dataValidade = dataValidade;
-    }
-    
-    public String getCategoria() {
-        return categoria;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public Integer getLimite() {
-        return limite;
-    }
-
-    public void setLimite(Integer limite) {
-        this.limite = limite;
-    }
+    public LocalDateTime getDataCadastro() {return dataCadastro;}
+    public void setDataCadastro(LocalDate dataCadastro) {}
 }

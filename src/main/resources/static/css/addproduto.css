@@ -48,8 +48,9 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 550px;
     margin: 0 auto;
+    margin-top: 30px;
 }
 
 /* Estilização dos rótulos e campos do formulário */
@@ -81,3 +82,9 @@ button {
 button:hover {
     background-color: #4cae4c;
 }
+#cadastroxml {
+    margin-left: 380px;
+    align-self: center;
+}
+
+

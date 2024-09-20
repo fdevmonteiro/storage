@@ -22,18 +22,25 @@ import com.example.estoque.service.ProdutoService;
 public class PagAddprodutoController{
 	@Autowired
 	private ProdutoService produtoService;
-	
+
 	@GetMapping("/adicionar")
 	public String showAddProdutoForm(Model model) {
-	    model.addAttribute("produto", new Produto());
-	    return "adicionar-produto";
+		System.out.println("Acessando a página de adicionar produto");
+		model.addAttribute("produto", new Produto());
+		return "adicionar-produto";
 	}
 
 	@PostMapping("/adicionar")
 	public String addProduto(@ModelAttribute("produto") Produto produto, RedirectAttributes redirectAttributes) {
-	    produtoService.salvar(produto);
-	    redirectAttributes.addFlashAttribute("message", "Produto adicionado com sucesso!");
-	    return "redirect:/produtos";
+		produtoService.salvar(produto);
+		redirectAttributes.addFlashAttribute("message", "Produto adicionado com sucesso!");
+		return "redirect:/produtos";
 	}
 
+       @GetMapping("upload")
+	public String showUploadForm(Model model) {
+		return "upload";
+
+	   }
 }
+

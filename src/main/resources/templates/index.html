@@ -11,16 +11,62 @@
     </header>
     <nav>
         <ul class="menu">
-            <li><a th:href="@{/produtos}" class="menu-item">Lista de Produtos</a></li>
+            <li><a href="/produtos" class="menu-item">Lista de Produtos</a></li>
             <li><a href="/adicionar" class="menu-item">Adicionar Produto</a></li>
+            <li><a href="/movimentacao" class="menu-item">Historico de Movimentações</a></li>
+            <li><a href="/registrarSaida" class="menu-item">Registrar Saida</a></li>
 
         </ul>
     </nav>
+    <div id="aviso">Avisos</div>
+
+
+
     <footer>
+
+
+
+
         <p>&copy; 2024 Cantina B</p>
     </footer>
 
 <script>
+
+    async function buscarProdutos() {
+        try {
+            const response = await fetch('/api/produtos'); // Novo endpoint que retorna JSON
+            const produtos = await response.json(); // Converter resposta para JSON
+            verificarLimite(produtos); // Chamar a função que verifica limites
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
+        }
+    }
+
+    function verificarLimite(produtos) {
+        var avisoDiv = document.getElementById("aviso");
+
+        // Limpar avisos anteriores
+        avisoDiv.innerHTML = "";
+
+        produtos.forEach(function(produto) {
+            if (produto.quantidade <= produto.limite) {
+                // Criar um card de aviso
+                var card = document.createElement("div");
+                card.classList.add("card"); // Adiciona uma classe 'card' para estilização (opcional)
+
+                // Adicionar o conteúdo ao card
+                card.innerHTML = `<strong>${produto.nome}</strong> chegou ao limite!`;
+
+                // Adicionar o card ao elemento de aviso
+                avisoDiv.appendChild(card);
+            }
+        });
+    }
+
+    // Chamar a função para buscar produtos e verificar limites
+    buscarProdutos();
+
+
 
 
 

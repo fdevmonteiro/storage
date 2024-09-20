@@ -5,18 +5,23 @@ import com.example.estoque.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+
 public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
+
+    @GetMapping("/api/produtos")
+    @ResponseBody
+    public List<Produto> listarTodosProdutos() {
+        return produtoService.listarTodos();
+    }
+
 
     @GetMapping("/produtos")
     public String listarProdutos(Model model) {
@@ -52,6 +57,18 @@ public class ProdutoController {
         return "redirect:/produtos";
     }
 
+  
+
+
+
+
+
 
 }
+
+
+
+
+
+
 
